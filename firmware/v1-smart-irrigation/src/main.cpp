@@ -1,18 +1,18 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
-
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  delay(1000); // Wait for serial monitor to open
+
+  Serial.println();
+  Serial.println("Project Eden V1 initialized"); //the project is started
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  Serial.println("System is running..."); // the project is working
+  delay(1000); // Delay for 1 second
+
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
