@@ -1,6 +1,6 @@
 #include <Arduino.h>
-
-const int SOIL_MOISTURE_SENSOR_PIN = 34; // ESP32 pin connected to the soil moisture sensor (pin 34 allows an analog input)
+#include "soilReadingDeclaration.hpp"
+#include "soilReadingDefinitions.cpp"
 
 void setup() {
   Serial.begin(115200);
@@ -13,13 +13,12 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int soilMoistureValue = analogRead(SOIL_MOISTURE_SENSOR_PIN); // Read the soil moisture sensor value
-
+  int soilMoistureRaw = readSoilMoistureRaw(); // Read the raw value from the soil moisture sensor
   Serial.print("Soil Moisture Value: ");
-  Serial.println(soilMoistureValue); // the sensor value is printed to the serial monitor
-
-  delay(1000); // Delay for 1 second
+  Serial.print(calculateSoilMoisturePercentage(soilMoistureRaw));
+  Serial.println("%"); // Print the soil moisture percentage to the serial monitor
+   // the moisture percentage is calculated and printed to the serial monitor
+  delay(5000); // Delay for 5 seconds
 
 }
 
